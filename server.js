@@ -17,7 +17,10 @@ var cheerio = require("cheerio");
 mongoose.Promise = Promise;
 
 //Define port
-var port = process.env.PORT || 3000
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
+// var port = process.env.PORT || 3000
 
 // Initialize Express
 var app = express();
@@ -39,6 +42,10 @@ app.engine("handlebars", exphbs({
     partialsDir: path.join(__dirname, "/views/layouts/partials")
 }));
 app.set("view engine", "handlebars");
+
+
+
+
 
 // Database configuration with mongoose
 mongoose.connect("mongodb://heroku_xfc61vdw:5ufq58kqo99fgk928k372i6vbp@ds135690.mlab.com:35690/heroku_xfc61vdw");
